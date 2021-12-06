@@ -11,8 +11,9 @@ import java.util.stream.Collectors;
 public class RandomArticleGenerator implements ArticleGenerator {
     @Override
     public Article generate(List<Word> words) {
-        Collections.shuffle(words);
-        var content = words.stream()
+        var wordsCopy = new ArrayList<>(words);
+        Collections.shuffle(wordsCopy);
+        var content = wordsCopy.stream()
                 .map(Word::getValue)
                 .collect(Collectors.joining(" "));
         return new Article(content);
